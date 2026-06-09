@@ -1,0 +1,34 @@
+name: Cypress API tests
+
+on:
+  schedule:
+    - cron: '58 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  cypress-api-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v6
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v6
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Cypress API tests
+      run: npm run cy:api
+
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v6
+      if: always()
+      with:
+        name: mochawesome-report
+        path: cypress/reports/html/index.html
+        retention-days: 30
+        if-no-files-found: warn
+
+      env:
+        CI: true

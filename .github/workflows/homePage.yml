@@ -1,0 +1,31 @@
+name: Cypress Home Page Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cypress-home-page:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v6
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v6
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Cypress home page tests
+      run: npm run cy:homePage
+      
+    - name: Send notification to Slack
+      if: always()
+      env:
+          SLACK_WEBHOOK_URL: ${{ secrets.PIPELINESLACKCONECTION }}
+      run: |
+        payload="payload={\"text\":\":rocket: Pipeline '${{ github.workflow }}' launched on branch '${{ github.ref }}' in repository '${{ github.repository }}'\"}"
+        curl -X POST --data-urlencode "$payload" $SLACK_WEBHOOK_URL
+        
+    env:
+        CI: true

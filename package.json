@@ -1,0 +1,46 @@
+{
+  "name": "cypress_bootcamp_2026",
+  "version": "1.0.0",
+  "description": "cypress_bootcamp_2026",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:regression": "npx cypress run --spec 'cypress/e2e/tests/features/**/*.feature' --env tags='@regression'",
+    "cy:homePage": "npx cypress run --spec 'cypress/e2e/tests/features/**/*.feature' --env tags='@homePage'",
+    "cy:purchaseFlow": "npx cypress run --spec 'cypress/e2e/tests/features/**/*.feature' --env tags='@purchaseFlow'",
+    "cy:filters": "npx cypress run --spec 'cypress/e2e/tests/features/**/*.feature' --env tags='@filters'",
+    "cy:login": "npx cypress run --spec 'cypress/e2e/tests/features/**/*.feature' --env tags='@login'",
+    "cy:smoke": "npx cypress run --spec 'cypress/e2e/tests/features/**/*.feature' --env tags='@smoke'",
+    "cy:api": "npx cypress run --spec 'cypress/e2e/tests/apiTests/**/*.cy.js'",
+    "cy:accesibilidad": "npx cypress run --spec 'cypress/e2e/tests/describe_test/accesibilidad.cy.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JavierFB83/cypress_bootcamp_2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JavierFB83/cypress_bootcamp_2026/issues"
+  },
+  "homepage": "https://github.com/JavierFB83/cypress_bootcamp_2026#readme",
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/step_definitions/**/*.js"
+  },
+  "dependencies": {
+    "cypress": "^15.15.0",
+    "cypress-plugin-api": "^2.11.2"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "cypress-on-fix": "^1.1.0",
+    "esbuild": "^0.28.0",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2",
+    "wick-a11y": "^3.0.1"
+  }
+}
